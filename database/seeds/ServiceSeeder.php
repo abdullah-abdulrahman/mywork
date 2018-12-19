@@ -19,7 +19,8 @@ class ServiceSeeder extends Seeder
         for($i=0; $i<count($nums); $i++){
             $service = new Service;
             $service->name = "Service ". $nums[$i];
-            $service->description = "This is a brief description of Service ". $nums[$i].
+            $service->brief_description = "This is a brief description of Service ". $nums[$i];
+            $service->description = "This is a description of Service ". $nums[$i].
             " Lorem ipsum dolor sit amet, consectetur adipiscing elit,
              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris

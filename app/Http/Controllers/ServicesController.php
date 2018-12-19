@@ -13,7 +13,7 @@ class ServicesController extends Controller
     public function index(){
         $data['contact'] = Contact::select('description', 'address', 'phone', 'email')->get();
         $data['setting'] = Setting::all();
-        $data['services'] = Service::select('id', 'name', 'description', 'image')->get();
+        $data['services'] = Service::select('id', 'name', 'brief_description', 'image')->get();
 
         return view('main.services')->with($data);
     }

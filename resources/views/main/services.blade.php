@@ -1,11 +1,7 @@
 @extends('main.layout')
 
 @section('styles')
-    <style>
-        #header {
-            background-color: #904E65;
-        }
-    </style>
+    <link rel="stylesheet" href="{{url('/')}}/main_assets/css/custom-menu.css">
 @endsection
 
 @section('content')
@@ -21,7 +17,7 @@
                         </div>
                         <h2 class="title">{{$service->name}}</h2>
                         <p class="text-center">
-                            {{$service->description}} <br>
+                            {{$service->brief_description}} <br>
                             <a href="{{route('service', ['id'=> $service->id])}}" class="btn btn-primary mt-3" role="button">Show Service</a>
                         </p>
                     </div>
@@ -31,4 +27,9 @@
         </div>
     </section>
 </div>
+
+<script>
+    document.querySelector('#home').className = "";
+    document.querySelector('.menu-has-children').className = "menu-active";
+</script>
 @endsection

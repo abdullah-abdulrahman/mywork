@@ -150,7 +150,7 @@
                             <figure>
                                 <img src="{{url('/')}}{{$this_image->image}}" class="img-fluid" alt="">
                                 <a href="{{url('/')}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                                <a href="{{route('service', ['id'=> $this_image->project->service->id])}}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                                <a href="{{route('project', ['id'=> $this_image->project_id])}}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
                             </figure>
             
                             <div class="portfolio-info">
@@ -220,7 +220,9 @@
             <div class="form">
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
+
+            <form action="/" method="post" role="form" class="contactForm">
+                @csrf
                 <div class="form-row">
                 <div class="form-group col-md-6">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />

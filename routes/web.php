@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,11 +13,22 @@
 */
 
 Route::get('/', 'HomepageController@index')->name('homepage');
+Route::post('/', 'HomepageController@sendMessage');
+Route::post('/newsletter', 'HomepageController@subscribe');
+
 Route::get('/gallery', 'GalleryController@index')->name('gallery');
 Route::get('/services', 'ServicesController@index')->name('allServices');
 Route::get('/services/{id}', 'ServicesController@show')->name('service');
+Route::get('/projects/{id}', 'ProjectsController@show')->name('project');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('admin');
+
+
+Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
+
+    Route::get('/team', 'TeamController@index')->name('admin.team');
+
+});

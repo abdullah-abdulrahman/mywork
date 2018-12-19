@@ -17,7 +17,7 @@
   @include('admin.inc.header')
 
   <!-- Left side column. contains the logo and sidebar -->
-  @include('admin.inc.leftside')
+  @include('admin.inc.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
    @yield('content')
@@ -25,9 +25,6 @@
 
   <!-- Footer -->
   @include('admin.inc.footer')
-
-  <!-- Control Sidebar -->
-  @include('admin.inc.sidebar')
 
 </div>
 <!-- ./wrapper -->

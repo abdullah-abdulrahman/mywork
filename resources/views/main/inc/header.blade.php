@@ -7,7 +7,7 @@
 
         <nav id="nav-menu-container">
         <ul class="nav-menu">
-            <li class="menu-active"><a href="{{url('/')}}#intro">Home</a></li>
+            <li id="home" class="menu-active"><a href="{{url('/')}}#intro">Home</a></li>
             <li><a href="{{url('/')}}#about">About Us</a></li>
             <li><a href="{{url('/')}}#team">Team</a></li>
             <li><a href="{{url('/')}}#team">Facts</a></li>
@@ -25,7 +25,7 @@
                 <li><a href="{{route('service', ['id' => 6])}}">Service Six</a></li>
             </ul>
             </li>
-            <li><a href="{{route('gallery')}}">Gallery</a></li>
+            <li id="gallery"><a href="{{route('gallery')}}">Gallery</a></li>
             <li><a href="{{url('/')}}#contact">Contact us</a></li>
         </ul>
         </nav>

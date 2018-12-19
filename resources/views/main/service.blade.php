@@ -1,11 +1,7 @@
 @extends('main.layout')
 
 @section('styles')
-    <style>
-            #header {
-                background-color: #904E65;
-            }
-    </style>
+    <link rel="stylesheet" href="{{url('/')}}/main_assets/css/custom-menu.css">
 @endsection
 
 @section('content')
@@ -32,7 +28,7 @@
                             <figure>
                                 <img src="{{url('/')}}{{$this_image->image}}" class="img-fluid" alt="">
                                     <a href="{{url('/')}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                                    <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                                    <a href="{{route('project', ['id'=>$this_image->project_id])}}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
                             </figure>
             
                             <div class="portfolio-info">
@@ -46,5 +42,10 @@
     </div>
 </section>
 
-</div>    
+</div>  
+
+<script>
+    document.querySelector('#home').className = "";
+    document.querySelector('.menu-has-children').className = "menu-active";
+</script>
 @endsection

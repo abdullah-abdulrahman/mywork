@@ -1,11 +1,7 @@
 @extends('main.layout')
 
 @section('styles')
-    <style>
-            #header {
-                background-color: #904E65;
-            }
-    </style>
+    <link rel="stylesheet" href="{{url('/')}}/main_assets/css/custom-menu.css">
 @endsection
 
 @section('content')
@@ -19,12 +15,11 @@
     <div class="container">
         <div class="row portfolio-container">
             @foreach ($image as $this_image)
-                    <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
+                    <div id="gallery-item" class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
                         <div class="portfolio-wrap">
                             <figure>
                                 <img src="{{url('/')}}{{$this_image->image}}" class="img-fluid" alt="">
-                                <a href="{{url('/')}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                                <a href="{{route('service', ['id'=> $this_image->project->service->id])}}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                                <a href="{{url('/')}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview link-preview-centered" title="Preview"><i class="ion ion-eye"></i></a>
                             </figure>
                         </div>
                     </div>
@@ -33,5 +28,12 @@
     </div>
 </section>
 
-</div>    
+</div> 
+
+<script>
+    document.querySelector('#home').className = "";
+    document.querySelector('#gallery').className = "menu-active";
+</script>
 @endsection
+
+
