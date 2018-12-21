@@ -2,3 +2,17 @@
     padding: 50px;
     padding-right: 100px;
 }
+
+.view-container {
+    padding: 50px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+}
+
+.well-container {
+    max-width: 1000px;
+}
+
+.bottom-btn {
+    padding-bottom: 50px;
+}

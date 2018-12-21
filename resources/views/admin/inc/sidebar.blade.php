@@ -15,12 +15,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-angle-right"></i> Slider</a></li>
-            <li><a href="#"><i class="fa fa-question"></i> About Us</a></li>
+            <li><a href="{{route('admin.slider')}}"><i class="fa fa-angle-right"></i> Slider</a></li>
+            <li><a href="{{route('admin.about')}}"><i class="fa fa-question"></i> About Us</a></li>
             <li><a href="{{route('admin.team')}}"><i class="fa fa-user"></i> Our Team</a></li>
-            <li><a href="#"><i class="fa fa-info-circle"></i> Facts</a></li>
-            <li><a href="#"><i class="fa fa-users"></i> Partners</a></li>
-            <li><a href="#"><i class="fa fa-phone"></i> Contact us</a></li>
+            <li><a href="{{route('admin.facts')}}"><i class="fa fa-info-circle"></i> Facts</a></li>
+            <li><a href="{{route('admin.partners')}}"><i class="fa fa-users"></i> Partners</a></li>
+            <li><a href="{{route('admin.contact')}}"><i class="fa fa-phone"></i> Contact us</a></li>
           </ul>
         </li>
 
@@ -43,13 +43,13 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="{{route('admin.gallery')}}">
             <i class="fa fa-image"></i> <span>Gallery</span>
           </a>
         </li>
 
         <li>
-          <a href="#">
+          <a href="{{route('admin.settings')}}">
             <i class="fa fa-cog"></i> <span>Settings</span>
           </a>
         </li>
