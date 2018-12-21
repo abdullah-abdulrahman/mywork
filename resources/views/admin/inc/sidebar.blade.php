@@ -24,7 +24,7 @@
           </ul>
         </li>
 
-        <li class="treeview">
+        {{-- <li class="treeview">
           <a href="#">
             <i class="fa fa-th"></i> <span>Services</span>
             <span class="pull-right-container">
@@ -40,6 +40,12 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Service Six</a></li>
             <li><a href="#"><i class="fa fa-plus-square"></i> Add new</a></li>
           </ul>
+        </li> --}}
+
+        <li>
+          <a href="{{route('admin.services')}}">
+            <i class="fa fa-th"></i> <span>Services</span>
+          </a>
         </li>
 
         <li>

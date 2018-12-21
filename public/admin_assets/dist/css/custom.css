@@ -16,3 +16,12 @@
 .bottom-btn {
     padding-bottom: 50px;
 }
+
+#facts-form input{
+    width: 100px;
+}
+
+#facts-form .form-group{
+    display: inline-block;
+    padding-left: 50px;
+}

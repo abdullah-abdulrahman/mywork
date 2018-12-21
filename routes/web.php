@@ -43,6 +43,8 @@ Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
     Route::get('/about/{id}/edit', 'AboutController@edit')->name('admin.about.edit');
     Route::patch('/about/{id}', 'AboutController@update')->name('admin.about.update');
 
+    Route::get('/facts', 'FactsController@index')->name('admin.facts');
+    Route::patch('/facts', 'FactsController@update')->name('admin.facts.update');
 
     Route::get('/settings', 'SettingsController@index')->name('admin.settings');
     Route::patch('/settings', 'SettingsController@update')->name('admin.settings.update');
@@ -50,7 +52,12 @@ Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
     Route::get('/contact', 'ContactController@index')->name('admin.contact');
     Route::patch('/contact', 'ContactController@update')->name('admin.contact.update');
 
-    Route::get('/facts', 'ContactController@index')->name('admin.facts');
+    Route::get('/services', 'ServicesController@index')->name('admin.services');
+    Route::get('/services/create', 'ServicesController@create')->name('admin.services.create');
+    Route::post('/services', 'ServicesController@store')->name('admin.services.store');
+    Route::get('/services/{id}/edit', 'ServicesController@edit')->name('admin.services.edit');
+    Route::patch('/services/{id}', 'ServicesController@update')->name('admin.services.update');
+    Route::delete('/services/{id}', 'ServicesController@destroy')->name('admin.services.destroy');
 
     Route::get('/gallery', 'ContactController@index')->name('admin.gallery');
 
