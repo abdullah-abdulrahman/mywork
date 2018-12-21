@@ -11,7 +11,7 @@ use App\Helpers\Classes\UploadClass;
 class ServicesController extends Controller
 {
     public function index(){
-        $data['service'] = Service::select('id', 'name', 'brief_description', 'description', 'image')->get();
+        $data['service'] = Service::select('id', 'name', 'brief_description', 'description', 'image')->orderBy('id', 'DESC')->get();
         return view('admin.pages.services.index')->with($data);
     }
 

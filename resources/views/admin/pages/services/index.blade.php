@@ -3,6 +3,10 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container view-container">
+            <div class="text-center bottom-btn">
+                <a href="{{route('admin.services.create')}}" class="btn btn-lg btn-primary">Add New Service</a>
+            </div>
+            
         @foreach ($service as $service_item)
             <div class="well">
                 <div class="container well-container">
@@ -33,10 +37,6 @@
                 </div>
             </div>
         @endforeach
-    </div>
-
-    <div class="text-center bottom-btn">
-        <a href="{{route('admin.services.create')}}" class="btn btn-lg btn-primary">Add New Service</a>
     </div>
 
 </div>

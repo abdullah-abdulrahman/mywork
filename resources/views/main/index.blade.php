@@ -174,7 +174,13 @@
 
             <div class="owl-carousel clients-carousel">
                 @foreach ($partner as $partner_item)
-                <img src="{{url('/')}}{{ $partner_item->image }}" alt="">   
+                    @if($partner_item->url !== null)
+                        <a href="{{$partner_item->url}}" target="_blank">
+                    @endif
+                        <img src="{{url('/')}}{{ $partner_item->image }}" alt="">
+                    @if($partner_item->url !== null)
+                        </a>
+                    @endif   
                 @endforeach
             </div>
         </div>

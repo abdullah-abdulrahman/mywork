@@ -11,7 +11,7 @@ use App\Helpers\Classes\UploadClass;
 class SliderController extends Controller
 {
     public function index(){
-        $data['slider'] = Slider::select('id', 'title', 'description', 'image')->get();
+        $data['slider'] = Slider::select('id', 'title', 'description', 'image')->orderBy('id', 'DESC')->get();
         return view('admin.pages.slider.index')->with($data);
     }
 

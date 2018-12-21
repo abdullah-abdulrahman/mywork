@@ -52,6 +52,13 @@ Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
     Route::get('/contact', 'ContactController@index')->name('admin.contact');
     Route::patch('/contact', 'ContactController@update')->name('admin.contact.update');
 
+    Route::get('/partners', 'PartnersController@index')->name('admin.partners');
+    Route::get('/partners/create', 'PartnersController@create')->name('admin.partners.create');
+    Route::post('/partners', 'PartnersController@store')->name('admin.partners.store');
+    Route::get('/partners/{id}/edit', 'PartnersController@edit')->name('admin.partners.edit');
+    Route::patch('/partners/{id}', 'PartnersController@update')->name('admin.partners.update');
+    Route::delete('/partners/{id}', 'PartnersController@destroy')->name('admin.partners.destroy');
+
     Route::get('/services', 'ServicesController@index')->name('admin.services');
     Route::get('/services/create', 'ServicesController@create')->name('admin.services.create');
     Route::post('/services', 'ServicesController@store')->name('admin.services.store');
@@ -59,9 +66,10 @@ Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
     Route::patch('/services/{id}', 'ServicesController@update')->name('admin.services.update');
     Route::delete('/services/{id}', 'ServicesController@destroy')->name('admin.services.destroy');
 
+    Route::get('/mailinglist', 'MailingListController@index')->name('admin.mailinglist');
+    Route::delete('/mailinglist/{id}', 'MailingListController@destroy')->name('admin.mailinglist.destroy');
+    
     Route::get('/gallery', 'ContactController@index')->name('admin.gallery');
-
-    Route::get('/partners', 'ContactController@index')->name('admin.partners');
    
 
 });

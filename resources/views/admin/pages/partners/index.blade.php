@@ -4,30 +4,34 @@
 <div class="content-wrapper">
     <div class="container view-container">
             <div class="text-center bottom-btn">
-                <a href="{{route('admin.slider.create')}}" class="btn btn-lg btn-primary">Add new item</a>
+                <a href="{{route('admin.partners.create')}}" class="btn btn-lg btn-primary">Add New Partner</a>
             </div>
-            
-        @foreach ($slider as $slider_item)
+
+        @foreach ($partner as $partner_item)
             <div class="well">
                 <div class="container well-container">
                     <div class="row">
                         <div class="col-lg-6">
                             <p>
-                                <b>title: </b>
-                                {{$slider_item->title}}
+                                <b>Name: </b>
+                                {{$partner_item->name}}
                             </p>
                             <p>
-                                <b>description: </b>
-                                {{$slider_item->description}}
+                                <b>URL: </b>
+                                @if($partner_item->url !== null)
+                                    {{$partner_item->url}}
+                                @else 
+                                    No URL available
+                                @endif
                             </p>
                         </div>
                         <div class="col-lg-3">
-                            <img src="{{url('/')}}{{$slider_item->image}}" width="190">
+                            <img src="{{url('/')}}{{$partner_item->image}}" width="190">
                         </div>
                         <div class="col-lg-3">
                                 <br>
-                                <a href="{{route('admin.slider.edit', ['id' => $slider_item->id])}}" class="btn btn-primary">edit</a>
-                                <form method="POST" action="{{route('admin.slider.destroy', ['id'=>$slider_item->id])}}" style="display:inline">
+                                <a href="{{route('admin.partners.edit', ['id' => $partner_item->id])}}" class="btn btn-primary">edit</a>
+                                <form method="POST" action="{{route('admin.partners.destroy', ['id'=>$partner_item->id])}}" style="display:inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger pl-3">delete</button>
@@ -38,5 +42,6 @@
             </div>
         @endforeach
     </div>
+
 </div>
 @endsection

@@ -55,6 +55,12 @@
         </li>
 
         <li>
+          <a href="{{route('admin.mailinglist')}}">
+            <i class="fa fa-at"></i> <span>MailingList</span>
+          </a>
+        </li>
+
+        <li>
           <a href="{{route('admin.settings')}}">
             <i class="fa fa-cog"></i> <span>Settings</span>
           </a>
