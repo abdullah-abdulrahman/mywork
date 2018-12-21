@@ -221,7 +221,7 @@
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
 
-            <form action="/" method="post" role="form" class="contactForm">
+            <form action="{{route('sendMessage')}}" method="post" role="form" class="contactForm">
                 @csrf
                 <div class="form-row">
                 <div class="form-group col-md-6">

@@ -13,8 +13,8 @@
 */
 
 Route::get('/', 'HomepageController@index')->name('homepage');
-Route::post('/', 'HomepageController@sendMessage');
-Route::post('/newsletter', 'HomepageController@subscribe');
+Route::post('/', 'HomepageController@sendMessage')->name('sendMessage');
+Route::post('/newsletter', 'HomepageController@subscribe')->name('subscribe');
 
 Route::get('/gallery', 'GalleryController@index')->name('gallery');
 Route::get('/services', 'ServicesController@index')->name('allServices');

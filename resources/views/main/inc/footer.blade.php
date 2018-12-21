@@ -51,7 +51,7 @@
             <div class="col-lg-3 col-md-6 footer-newsletter">
                 <h4>Our Newsletter</h4>
                 <p>{{ $setting[0]->newsletter }}</p>
-                <form action="/newsletter" method="post">
+                <form action="{{route('subscribe')}}" method="post">
                     @csrf
                     <input type="email" name="email"><input type="submit"  value="Subscribe">
                 </form>
