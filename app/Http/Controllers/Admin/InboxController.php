@@ -9,7 +9,7 @@ use App\ReceivedMail;
 class InboxController extends Controller
 {
     public function index(){
-        $data['inbox'] = ReceivedMail::orderBy('id', 'DESC')->get();
+        $data['inbox'] = ReceivedMail::orderBy('id', 'DESC')->paginate(10);
         return view('admin.pages.inbox.index')->with($data);
     }
 

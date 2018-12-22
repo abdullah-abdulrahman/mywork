@@ -29,7 +29,10 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>          
+        </table> 
+        <div class="text-center">
+            {!! $inbox->render() !!}     
+        </div>    
     </div>
 </div>
 @endsection

@@ -10,6 +10,7 @@ use App\Fact;
 use App\Partner;
 use App\Contact;
 use App\Setting;
+use App\Service;
 use App\Image;
 use App\Project;
 use App\ReceivedMail;
@@ -25,6 +26,7 @@ class HomepageController extends Controller
         $data['partner'] = Partner::select('name', 'image', 'url')->get();
         $data['contact'] = Contact::select('description', 'address', 'phone', 'email')->get();
         $data['setting'] = Setting::all();
+        $data['services'] = Service::select('id', 'name')->get();
         $data['image'] = Image::select('project_id', 'image')->orderBy('id', 'desc')->take(12)->get();
 
         return view('main.index')->with($data);

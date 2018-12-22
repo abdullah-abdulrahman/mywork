@@ -17,12 +17,9 @@
             <ul>
                 <li><a href="{{route('allServices')}}">All</a></li>
                 <hr>
-                <li><a href="{{route('service', ['id' => 1])}}">Service One</a></li>
-                <li><a href="{{route('service', ['id' => 2])}}">Service Two</a></li>
-                <li><a href="{{route('service', ['id' => 3])}}">Service Three</a></li>
-                <li><a href="{{route('service', ['id' => 4])}}">Service Four</a></li>
-                <li><a href="{{route('service', ['id' => 5])}}">Service Five</a></li>
-                <li><a href="{{route('service', ['id' => 6])}}">Service Six</a></li>
+                @foreach ($services as $service)
+                    <li><a href="{{route('service', ['id' => $service->id])}}">{{$service->name}}</a></li>   
+                @endforeach
             </ul>
             </li>
             <li id="gallery"><a href="{{route('gallery')}}">Gallery</a></li>

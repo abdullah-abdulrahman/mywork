@@ -7,6 +7,7 @@ use App\Contact;
 use App\Setting;
 use App\Project;
 use App\Image;
+use App\Service;
 
 class ProjectsController extends Controller
 {
@@ -15,6 +16,7 @@ class ProjectsController extends Controller
         $data['contact'] = Contact::select('description', 'address', 'phone', 'email')->get();
         $data['setting'] = Setting::all();
         $data['project'] = Project::findOrFail($id);
+        $data['services'] = Service::select('id', 'name')->get();
         $data['project_image'] = Image::select('image')->where('project_id', $id)->get();
 
         return view('main.project')->with($data);
