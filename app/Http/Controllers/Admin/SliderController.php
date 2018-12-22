@@ -38,6 +38,10 @@ class SliderController extends Controller
 
     }
 
+    public function show(){
+        return redirect(route('admin.slider'));
+    }
+
     public function edit($id){
         $data['id'] = $id;
         $data['slider'] = Slider::select('title', 'description', 'image')->where('id', $id)->get();

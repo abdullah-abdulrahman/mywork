@@ -40,6 +40,10 @@ class ServicesController extends Controller
 
     }
 
+    public function show(){
+        return redirect(route('admin.services'));
+    }
+
     public function edit($id){
         $data['id'] = $id;
         $data['service'] = Service::select('name', 'brief_description', 'description', 'image')->where('id', $id)->get();

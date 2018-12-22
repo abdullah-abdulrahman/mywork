@@ -10,7 +10,7 @@
         <h3>{{ $service->name }}</h3>
     </header>
     <img src="{{url('/')}}{{$service->image}}" class="service-image wow fadeInUp"> <br>
-    <p class="mt-3">{{ $service->description }}</p>
+    <p class="mt-3">{!! $service->description !!}</p>
 
 <!-- Portfolio Section -->
 <section id="portfolio"  class="section-bg" >

@@ -41,6 +41,9 @@
                 </div>
             </div>
         @endforeach
+        <div class="text-center">
+            {!! $partner->render() !!}
+        </div>
     </div>
 
 </div>

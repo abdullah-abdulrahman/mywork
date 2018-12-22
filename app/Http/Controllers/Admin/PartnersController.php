@@ -11,7 +11,7 @@ use App\Helpers\Classes\UploadClass;
 class PartnersController extends Controller
 {
     public function index(){
-        $data['partner'] = Partner::select('id', 'name', 'image', 'url')->orderBy('id', 'DESC')->get();
+        $data['partner'] = Partner::select('id', 'name', 'image', 'url')->orderBy('id', 'DESC')->paginate(5);
         return view('admin.pages.partners.index')->with($data);
     }
 
@@ -40,6 +40,10 @@ class PartnersController extends Controller
 
         return redirect(route('admin.partners'));
 
+    }
+
+    public function show(){
+        return redirect(route('admin.partners'));
     }
 
     public function edit($id){

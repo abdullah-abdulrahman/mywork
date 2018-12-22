@@ -14,7 +14,7 @@
                             </p>
                             <p>
                                 <b>description: </b>
-                                {{$about_item->description}}
+                                {!! $about_item->description !!}
                             </p>
                         </div>
                         <div class="col-lg-3">

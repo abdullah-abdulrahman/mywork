@@ -48,5 +48,11 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/admin_assets/dist/js/pages/dashboard.js"></script>
 
+<!-- ckeditor -->
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="/admin_assets/dist/js/demo.js"></script>

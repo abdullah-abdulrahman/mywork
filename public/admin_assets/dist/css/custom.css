@@ -25,3 +25,13 @@
     display: inline-block;
     padding-left: 50px;
 }
+
+.table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td  {
+    border-color: black !important;
+}
+
+.bordered {
+    padding: 50px;
+    margin: 50px;
+    border:1px solid black;
+}

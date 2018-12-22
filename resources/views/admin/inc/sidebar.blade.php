@@ -24,23 +24,11 @@
           </ul>
         </li>
 
-        {{-- <li class="treeview">
-          <a href="#">
-            <i class="fa fa-th"></i> <span>Services</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+        <li>
+          <a href="{{route('admin.projects')}}">
+            <i class="fa fa-th"></i> <span>Projects</span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Service One</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Service Two</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Service Three</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Service Four</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Service Five</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Service Six</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i> Add new</a></li>
-          </ul>
-        </li> --}}
+        </li>
 
         <li>
           <a href="{{route('admin.services')}}">
@@ -54,6 +42,12 @@
           </a>
         </li>
 
+        <li>
+          <a href="{{route('admin.inbox')}}">
+            <i class="fa fa-envelope-open"></i> <span>Inbox</span>
+          </a>
+        </li>
+  
         <li>
           <a href="{{route('admin.mailinglist')}}">
             <i class="fa fa-at"></i> <span>MailingList</span>

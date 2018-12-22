@@ -35,6 +35,7 @@ Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
     Route::get('/slider', 'SliderController@index')->name('admin.slider');
     Route::get('/slider/create', 'SliderController@create')->name('admin.slider.create');
     Route::post('/slider', 'SliderController@store')->name('admin.slider.store');
+    Route::get('/slider/{id}', 'SliderController@show')->name('admin.slider.show');
     Route::get('/slider/{id}/edit', 'SliderController@edit')->name('admin.slider.edit');
     Route::patch('/slider/{id}', 'SliderController@update')->name('admin.slider.update');
     Route::delete('/slider/{id}', 'SliderController@destroy')->name('admin.slider.destroy');
@@ -55,19 +56,33 @@ Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
     Route::get('/partners', 'PartnersController@index')->name('admin.partners');
     Route::get('/partners/create', 'PartnersController@create')->name('admin.partners.create');
     Route::post('/partners', 'PartnersController@store')->name('admin.partners.store');
+    Route::get('/partners/{id}', 'PartnersController@show')->name('admin.partners.show');
     Route::get('/partners/{id}/edit', 'PartnersController@edit')->name('admin.partners.edit');
     Route::patch('/partners/{id}', 'PartnersController@update')->name('admin.partners.update');
     Route::delete('/partners/{id}', 'PartnersController@destroy')->name('admin.partners.destroy');
 
+    Route::get('/projects', 'ProjectsController@index')->name('admin.projects');
+    Route::get('/projects/create', 'ProjectsController@create')->name('admin.projects.create');
+    Route::post('/projects', 'ProjectsController@store')->name('admin.projects.store');
+    Route::get('/projects/{id}', 'ProjectsController@show')->name('admin.projects.show');
+    Route::get('/projects/{id}/edit', 'ProjectsController@edit')->name('admin.projects.edit');
+    Route::patch('/projects/{id}', 'ProjectsController@update')->name('admin.projects.update');
+    Route::delete('/projects/{id}', 'ProjectsController@destroy')->name('admin.projects.destroy');
+
     Route::get('/services', 'ServicesController@index')->name('admin.services');
     Route::get('/services/create', 'ServicesController@create')->name('admin.services.create');
     Route::post('/services', 'ServicesController@store')->name('admin.services.store');
+    Route::get('/services/{id}', 'ServicesController@show')->name('admin.services.show');
     Route::get('/services/{id}/edit', 'ServicesController@edit')->name('admin.services.edit');
     Route::patch('/services/{id}', 'ServicesController@update')->name('admin.services.update');
     Route::delete('/services/{id}', 'ServicesController@destroy')->name('admin.services.destroy');
 
     Route::get('/mailinglist', 'MailingListController@index')->name('admin.mailinglist');
     Route::delete('/mailinglist/{id}', 'MailingListController@destroy')->name('admin.mailinglist.destroy');
+
+    Route::get('/inbox', 'InboxController@index')->name('admin.inbox');
+    Route::get('/inbox/{id}', 'InboxController@show')->name('admin.inbox.show');
+    Route::delete('/inbox/{id}', 'InboxController@destroy')->name('admin.inbox.destroy');
     
     Route::get('/gallery', 'ContactController@index')->name('admin.gallery');
    

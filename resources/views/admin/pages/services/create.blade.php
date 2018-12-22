@@ -3,6 +3,10 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container form-container">
+        <div class="text-center">
+            <a href="{{route('admin.services')}}" class="btn btn-lg btn-primary">Back</a>
+        </div>
+
         <form method="POST" action="{{route('admin.services.store')}}" enctype="multipart/form-data">
             @csrf
     
@@ -18,7 +22,7 @@
     
             <div class="form-group">
                 <label>Description</label>
-                <textarea class="form-control" rows="6" name="description"></textarea>
+                <textarea class="form-control" rows="6" id="article-ckeditor" name="description"></textarea>
             </div>
 
             <div class="form-group">
