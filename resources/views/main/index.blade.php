@@ -131,13 +131,10 @@
             <div class="row">
             <div class="col-lg-12">
                 <ul id="portfolio-flters">
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-1">Service 1</li>
-                <li data-filter=".filter-2">Service 2</li>
-                <li data-filter=".filter-3">Service 3</li>
-                <li data-filter=".filter-4">Service 4</li>
-                <li data-filter=".filter-5">Service 5</li>
-                <li data-filter=".filter-6">Service 6</li>
+                    <li data-filter="*" class="filter-active">All</li>
+                    @foreach ($services as $service)
+                        <li data-filter=".filter-{{$service->id}}">{{$service->name}}</li>   
+                    @endforeach
                 </ul>
             </div>
             </div>
@@ -225,7 +222,9 @@
 
             <div class="form">
             <div id="sendmessage">Your message has been sent. Thank you!</div>
-            <div id="errormessage"></div>
+            <div id="errormessage">
+                @include('errors')
+            </div>
 
             <form action="{{route('sendMessage')}}" method="post" role="form" class="contactForm">
                 @csrf

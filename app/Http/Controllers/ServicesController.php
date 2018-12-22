@@ -24,7 +24,7 @@ class ServicesController extends Controller
         $data['setting'] = Setting::all();
         $data['services'] = Service::select('id', 'name')->get();
         $data['service'] = Service::findOrFail($id);
-        $data['image'] = Image::select('project_id', 'image')->get();
+        $data['image'] = Image::select('project_id', 'image')->orderBy('id', 'DESC')->get();
 
         return view('main.service')->with($data);
     }

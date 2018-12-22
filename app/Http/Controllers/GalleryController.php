@@ -11,7 +11,7 @@ use App\Service;
 class GalleryController extends Controller
 {
     public function index(){
-        $data['image'] = Image::select('project_id', 'image')->orderBy('id', 'desc')->get();
+        $data['image'] = Image::select('project_id', 'image')->orderBy('id', 'DESC')->get();
         $data['contact'] = Contact::select('description', 'address', 'phone', 'email')->get();
         $data['setting'] = Setting::all();
         $data['services'] = Service::select('id', 'name')->get();

@@ -27,7 +27,7 @@ class HomepageController extends Controller
         $data['contact'] = Contact::select('description', 'address', 'phone', 'email')->get();
         $data['setting'] = Setting::all();
         $data['services'] = Service::select('id', 'name')->get();
-        $data['image'] = Image::select('project_id', 'image')->orderBy('id', 'desc')->take(12)->get();
+        $data['image'] = Image::select('project_id', 'image')->orderBy('id', 'DESC')->take(12)->get();
 
         return view('main.index')->with($data);
     }
