@@ -58,13 +58,13 @@
 
             <div class="row about-cols">          
             @foreach ($about as $key => $about_item)
-                <div class="col-md-4 wow fadeInUp" data-wow-delay="{{ 0.1*$key }}s">
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="{{ 0.1*$key }}s">
                 <div class="about-col">
                     <div class="img">
                     <img src="{{url('/')}}{{ $about_item->image }}" alt="" class="img-fluid">
                         <div class="icon"><i class="ion-ios-list-outline"></i></div>
                     </div>
-                    <h2 class="title"><a href="#">{{ $about_item->title }}</a></h2>
+                    <h2 class="title">{{ $about_item->title }}</h2>
                     <p>
                     {!! $about_item->description !!}
                     </p>
@@ -155,7 +155,7 @@
                             </figure>
             
                             <div class="portfolio-info">
-                                <h4><a href="{{route('service', ['id'=> $this_image->project->service->id])}}">{{$this_image->project->title}}</a></h4>
+                                <h4><a href="{{route('project', ['id'=>$this_image->project_id])}}" target="_blank">{{ Str::words($this_image->project->title, 4) }}</a></h4>
                                 <p>{{$this_image->project->service->name}}</p>
                             </div>
                             </div>
@@ -259,6 +259,26 @@
     </section>   
 </main>
 
+<script>
+    var hash = window.location.hash;
+    if(hash == "#team" || hash == "#portfolio" || hash == "#partners" || hash == "#contact" || hash == "#about"){
+        document.querySelector('#header').className += "header-scrolled";
+    }
+
+    var aboutCols = document.getElementsByClassName('about-col');
+    var maximumHeight = 0;
+    for(var i=0; i<aboutCols.length; i++){
+        var height = aboutCols[i].clientHeight;
+        if(height > maximumHeight){
+            maximumHeight = height;
+        }
+    }
+
+    for(var i=0; i<aboutCols.length; i++){
+        aboutCols[i].clientHeight = maximumHeight;
+    }
+
+</script>
 
 @endsection
 

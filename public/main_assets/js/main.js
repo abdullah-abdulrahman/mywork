@@ -105,6 +105,7 @@ jQuery(document).ready(function( $ ) {
     } else {
       $('#header').removeClass('header-scrolled');
     }
+    return false;
   });
 
   // Intro carousel
@@ -168,3 +169,5 @@ jQuery(document).ready(function( $ ) {
   });
 
 });
+
+

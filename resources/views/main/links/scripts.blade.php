@@ -21,10 +21,6 @@
   <!-- Template Main Javascript File -->
   <script src="{{url('/')}}/main_assets/js/main.js"></script>
 
-  <!-- Custom Javascript File -->
-  <script src="{{url('/')}}/main_assets/js/custom.js"></script>
-
-
   
 <script>
   @if(session('message-success') !== null)

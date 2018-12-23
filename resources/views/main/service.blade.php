@@ -33,7 +33,7 @@
                             </figure>
             
                             <div class="portfolio-info">
-                                <h4><a href="#">{{$this_image->project->title}}</a></h4>
+                                <h4><a href="{{route('project', ['id'=>$this_image->project_id])}}" target="_blank">{{ Str::words($this_image->project->title, 4) }}</a></h4>
                             </div>
                         </div>
                     </div>
