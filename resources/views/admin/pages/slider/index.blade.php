@@ -3,9 +3,10 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container view-container">
-            <div class="text-center bottom-btn">
-                <a href="{{route('admin.slider.create')}}" class="btn btn-lg btn-primary">Add new item</a>
-            </div>
+        <div class="text-center bottom-btn">
+            <a href="{{route('admin.slider.create')}}" class="btn btn-lg btn-primary">Add item</a>
+            <a href="{{route('homepage')}}" target="_blank" class="btn btn-lg btn-primary">Show on website</a>
+        </div>
             
         @foreach ($slider as $slider_item)
             <div class="well">
@@ -26,11 +27,11 @@
                         </div>
                         <div class="col-lg-3">
                                 <br>
-                                <a href="{{route('admin.slider.edit', ['id' => $slider_item->id])}}" class="btn btn-primary">edit</a>
+                                <a href="{{route('admin.slider.edit', ['id' => $slider_item->id])}}" class="btn btn-primary">Edit</a>
                                 <form method="POST" action="{{route('admin.slider.destroy', ['id'=>$slider_item->id])}}" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger pl-3">delete</button>
+                                    <button type="submit" class="btn btn-danger pl-3">Delete</button>
                                 </form>
                         </div>
                     </div>

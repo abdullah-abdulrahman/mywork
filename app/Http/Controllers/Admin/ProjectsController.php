@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class ProjectsController extends Controller
 {
     public function index(){
-        $data['projects'] = Project::select('id', 'service_id', 'title', 'description')->orderBy('id', 'DESC')->paginate(10);
-        // $data['images'] = Image::select('id', 'project_id', 'image')->orderBy('id', 'DESC')->get();
+        $data['projects'] = Project::select('id', 'service_id', 'title', 'description')->orderBy('id', 'DESC')->paginate(5);
         return view('admin.pages.projects.index')->with($data);
     }
 
@@ -76,8 +75,8 @@ class ProjectsController extends Controller
         $project->save();
         
         if($request->hasFile('image')){
-            $image = Image::select('image')->where('project_id', $id)->get();
-            $image_path = $image[0]->image;
+            $image = Image::select('image')->where('project_id', $id)->first();
+            $image_path = $image->image;
             Storage::delete($image_path);
 
             $uploaded_image = UploadClass::uploadImage($request, 'image', 'public/images');

@@ -11,7 +11,7 @@ use App\Helpers\Classes\UploadClass;
 class AboutController extends Controller
 {
     public function index(){
-        $data['about'] = About::select('id', 'title', 'description', 'image')->get();
+        $data['abouts'] = About::select('id', 'title', 'description', 'image')->get();
         return view('admin.pages.about.index')->with($data);
     }
 

@@ -15,5 +15,36 @@
   <!-- Contact Form JavaScript File -->
   <script src="{{url('/')}}/main_assets/contactform/contactform.js"></script>
 
+  <!-- Sweet Alert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <!-- Template Main Javascript File -->
   <script src="{{url('/')}}/main_assets/js/main.js"></script>
+
+  <!-- Custom Javascript File -->
+  <script src="{{url('/')}}/main_assets/js/custom.js"></script>
+
+
+  
+<script>
+  @if(session('message-success') !== null)
+    swal({
+      text: "Your message has been sent successfully",
+      icon: "success",
+    }); 
+  @endif
+
+  @if(session('message-failure') !== null)
+    swal({
+      text: "Failed to send message",
+      icon: "warning",
+    }); 
+  @endif
+
+  @if(session('newsletter-success') !== null)
+    swal({
+      text: "Your email has been sent successfully!",
+      icon: "success",
+    }); 
+  @endif
+</script>

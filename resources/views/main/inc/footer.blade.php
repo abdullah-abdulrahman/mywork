@@ -63,7 +63,7 @@
 
     <div class="container">
         <div class="copyright">
-        &copy; Copyright <strong>SmartTech</strong>. All Rights Reserved
+        &copy; Copyright <a href="https://www.facebook.com/smarttechdev" target="_blank"><strong>SmartTech</strong></a>. All Rights Reserved
         </div>
         <div class="credits">
     </div>

@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="content-wrapper">
-    <table class="table inbox-table table-bordered">
+    <table class="table table-bordered">
         <tr>
             <th>From:</th>
             <th>Email:</th>
-            <th>at:</th>
+            <th>At:</th>
             <th>Subject:</th>
-            <th>others:</th>
+            <th></th>
         </tr>
         <tbody>
             @foreach ($inbox as $inbox_item)
@@ -22,12 +22,15 @@
                         <form method="POST" action="{{route('admin.inbox.destroy', ['id'=>$inbox_item->id])}}" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger pl-3">delete</button>
+                            <button type="submit" class="btn btn-danger pl-3">Delete</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
-    </table>       
+    </table>   
+    <div class="text-center">
+        {{ $inbox->render() }}    
+    </div>    
 </div>
 @endsection

@@ -7,14 +7,14 @@
         <li class="header">Control Panel</li>
 
         <!-- Home tree -->
-        <li class="treeview">
+        <li id="home-treeview" class="treeview">
           <a href="#">
             <i class="fa fa-home"></i> <span>Home</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+          <ul id="home-treeview-menu" class="treeview-menu">
             <li><a href="{{route('admin.slider')}}"><i class="fa fa-angle-right"></i> Slider</a></li>
             <li><a href="{{route('admin.about')}}"><i class="fa fa-question"></i> About Us</a></li>
             <li><a href="{{route('admin.team')}}"><i class="fa fa-user"></i> Our Team</a></li>
@@ -33,12 +33,6 @@
         <li>
           <a href="{{route('admin.services')}}">
             <i class="fa fa-th"></i> <span>Services</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="{{route('admin.gallery')}}">
-            <i class="fa fa-image"></i> <span>Gallery</span>
           </a>
         </li>
 

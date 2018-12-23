@@ -40,15 +40,22 @@ class HomepageController extends Controller
             'message' => 'required|string'
         ]);
 
-        $receivedMail = new ReceivedMail;
-        $receivedMail->name = request('name');
-        $receivedMail->email = request('email');
-        $receivedMail->subject = request('subject');
-        $receivedMail->message = request('message');
-        $receivedMail->save();
+        if($errors->any()){
+            dd('hello');
+            $request->session()->flash('message-failure', 'Failed to send');
+            return redirect(route('homepage').'/#contact');           
+        } else {
+            $receivedMail = new ReceivedMail;
+            $receivedMail->name = request('name');
+            $receivedMail->email = request('email');
+            $receivedMail->subject = request('subject');
+            $receivedMail->message = request('message');
+            $receivedMail->save();
 
-        return redirect('/');
-
+            $request->session()->flash('message-success', 'Sent successfully');
+            
+            return redirect(route('homepage'));
+        }
     }
 
     public function subscribe(Request $request){
@@ -60,6 +67,8 @@ class HomepageController extends Controller
         $mail->email = request('email');
         $mail->save();
 
-        return redirect('/');
+        $request->session()->flash('newsletter-success', 'Sent successfully');
+
+        return redirect(route('homepage'));
     }
 }

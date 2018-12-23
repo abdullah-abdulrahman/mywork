@@ -23,7 +23,7 @@
 <body>
 
     <!-- Header -->
-    @include('main.inc.header')
+    @yield('header')
 
     @yield('content')
 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container view-container">
-        <table class="table inbox-table table-bordered">
+        <table class="table table-bordered">
             <tr>
                 <th>Email:</th>
                 <th>Added at:</th>

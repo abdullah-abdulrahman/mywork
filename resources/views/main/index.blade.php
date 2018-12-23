@@ -1,5 +1,9 @@
 @extends('main.layout')
 
+@section('header')
+    @include('main.inc.header')
+@endsection
+
 @section('content')
 
 <!-- Intro section with Slider -->
@@ -62,7 +66,7 @@
                     </div>
                     <h2 class="title"><a href="#">{{ $about_item->title }}</a></h2>
                     <p>
-                    {{ $about_item->description }}
+                    {!! $about_item->description !!}
                     </p>
                 </div>
                 </div>
@@ -77,7 +81,7 @@
             <header class="section-header wow fadeInUp">
             <h3>{{ $team[0]->title }}</h3>
             <p>
-                {{ $team[0]->description }}
+                {!! $team[0]->description !!}
             </p>
             </header>
         </div>
@@ -223,8 +227,9 @@
             <div class="form">
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage">
-                @include('errors')
             </div>
+
+            @include('errors')
 
             <form action="{{route('sendMessage')}}" method="post" role="form" class="contactForm">
                 @csrf
@@ -253,6 +258,8 @@
         </div>
     </section>   
 </main>
+
+
 @endsection
 
 

@@ -3,31 +3,37 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container view-container">
-        @foreach ($about as $about_item)
-            <div class="well">
-                <div class="container well-container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p>
-                                <b>title: </b>
-                                {{$about_item->title}}
-                            </p>
-                            <p>
-                                <b>description: </b>
-                                {!! $about_item->description !!}
-                            </p>
-                        </div>
-                        <div class="col-lg-3">
-                            <img src="{{url('/')}}{{$about_item->image}}" width="190">
-                        </div>
-                        <div class="col-lg-3">
-                                <br>
-                                <a href="{{route('admin.about.edit', ['id' => $about_item->id])}}" class="btn btn-primary">edit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+        <div class="text-center bottom-btn">
+            <a href="{{route('homepage')}}/#about" target="_blank" class="btn btn-lg btn-primary">Show on website</a>
+        </div>
+        <table class="table table-bordered">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+            <tbody>
+                @foreach ($abouts as $about)
+                    <tr>
+                        <td>
+                            {{$about->title}}
+                        </td>
+                        <td>
+                            {!! Str::words($about->description, 10) !!}
+                        </td>
+                        <td>
+                            <img src="{{url('/')}}{{$about->image}}" width="100">  
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <a href="{{route('admin.about.edit', ['id' => $about->id])}}" class="btn btn-primary">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>   
     </div>
 </div>
 @endsection

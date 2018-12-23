@@ -1,8 +1,9 @@
 @extends('main.layout')
 
-@section('styles')
-    <link rel="stylesheet" href="{{url('/')}}/main_assets/css/custom-menu.css">
+@section('header')
+    @include('main.inc.othersheader')
 @endsection
+
 
 @section('content')
 <div class="container services-container">

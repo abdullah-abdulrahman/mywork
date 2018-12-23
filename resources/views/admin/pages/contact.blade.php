@@ -3,6 +3,9 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container form-container">
+        <div class="text-center bottom-btn">
+            <a href="{{route('homepage')}}/#contact" target="_blank" class="btn btn-lg btn-primary">Show on website</a>
+        </div>
         <form method="POST" action="{{route('admin.contact.update')}}">
             @csrf
             @method('PATCH')

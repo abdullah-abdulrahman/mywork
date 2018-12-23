@@ -13,7 +13,7 @@
 */
 
 Route::get('/', 'HomepageController@index')->name('homepage');
-Route::post('/', 'HomepageController@sendMessage')->name('sendMessage');
+Route::post('/sendMessage', 'HomepageController@sendMessage')->name('sendMessage');
 Route::post('/newsletter', 'HomepageController@subscribe')->name('subscribe');
 
 Route::get('/gallery', 'GalleryController@index')->name('gallery');
@@ -22,12 +22,11 @@ Route::get('/services/{id}', 'ServicesController@show')->name('service');
 Route::get('/projects/{id}', 'ProjectsController@show')->name('project');
 
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('admin');
+Route::get('/admin', 'HomeController@index')->name('admin');
 
 
-Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
     Route::get('/team', 'TeamController@index')->name('admin.team');
     Route::patch('/team', 'TeamController@update')->name('admin.team.update');
@@ -82,9 +81,6 @@ Route::group(['prefix'=>'home','namespace'=>'Admin'],function(){
 
     Route::get('/inbox', 'InboxController@index')->name('admin.inbox');
     Route::get('/inbox/{id}', 'InboxController@show')->name('admin.inbox.show');
-    Route::delete('/inbox/{id}', 'InboxController@destroy')->name('admin.inbox.destroy');
-    
-    Route::get('/gallery', 'ContactController@index')->name('admin.gallery');
-   
+    Route::delete('/inbox/{id}', 'InboxController@destroy')->name('admin.inbox.destroy');   
 
 });

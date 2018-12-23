@@ -11,7 +11,7 @@ use App\Helpers\Classes\UploadClass;
 class PartnersController extends Controller
 {
     public function index(){
-        $data['partner'] = Partner::select('id', 'name', 'image', 'url')->orderBy('id', 'DESC')->paginate(5);
+        $data['partners'] = Partner::select('id', 'name', 'image', 'url')->orderBy('id', 'DESC')->paginate(5);
         return view('admin.pages.partners.index')->with($data);
     }
 

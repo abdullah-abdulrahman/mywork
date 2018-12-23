@@ -3,11 +3,11 @@
     <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">
-            <img src="/admin_assets/dist/img/logo.png" width="40px">
+            <img src="{{url('/')}}/admin_assets/dist/img/logo.png" width="40px">
         </span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
-            <img src="/admin_assets/dist/img/logo.png" width="70px">
+            <img src="{{url('/')}}/admin_assets/dist/img/logo.png" width="70px">
         </span>
     </a>
 
@@ -23,13 +23,13 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="/admin_assets/dist/img/admin.png" class="user-image" alt="User Image">
+                <img src="{{url('/')}}/admin_assets/dist/img/admin.png" class="user-image" alt="User Image">
                 <span class="hidden-xs">Kareem Smarttech</span>
             </a>
             <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                    <img src="/admin_assets/dist/img/admin.png" class="img-circle" alt="User Image">
+                    <img src="{{url('/')}}/admin_assets/dist/img/admin.png" class="img-circle" alt="User Image">
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">

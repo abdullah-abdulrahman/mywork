@@ -19,7 +19,7 @@ a {
 }
 
 a:hover, a:active, a:focus {
-  color: #18d36e;
+  color: #1f02a0;
   outline: none;
   text-decoration: none;
 }
@@ -1292,7 +1292,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #contact .form button[type="submit"]:hover {
-  background: #13a456;
+  background: #1f02a0;
 }
 
 /*--------------------------------------------------------------
@@ -1442,7 +1442,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #footer .footer-top .footer-newsletter input[type="submit"]:hover {
-  background: #13a456;
+  background: #1f02a0;
 }
 
 #footer .copyright {

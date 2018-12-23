@@ -1,3 +1,9 @@
+<style>
+    #header {
+    background-color: #904E65;
+    }
+</style>
+
 <header id="header">
     <div class="container-fluid">
 
