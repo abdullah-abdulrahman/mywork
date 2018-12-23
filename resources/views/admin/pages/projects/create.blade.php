@@ -6,18 +6,20 @@
         <div class="text-center">
             <a href="{{route('admin.projects')}}" class="btn btn-lg btn-primary">Back</a>
         </div>
+
+        @include('errors')
         
         <form method="POST" action="{{route('admin.projects.store')}}" enctype="multipart/form-data">
             @csrf
     
             <div class="form-group">
                 <label for="post-title">Title</label>
-                <input type="text" class="form-control" id="post-title" name="title">
+                <input type="text" class="form-control" id="post-title" name="title" value="{{old('title')}}">
             </div>
 
             <div class="form-group">
                 <label>Description</label>
-                <textarea class="form-control" rows="6" id="article-ckeditor" name="description"></textarea>
+                <textarea class="form-control" rows="6" id="article-ckeditor" name="description">{{old('description')}}</textarea>
             </div>
 
             <div class="form-group">

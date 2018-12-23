@@ -4,7 +4,9 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Menu header -->
-        <li class="header">Control Panel</li>
+        <li class="header">
+          <div class="text-center">Control Panel</div>
+        </li>
 
         <!-- Home tree -->
         <li id="home-treeview" class="treeview">

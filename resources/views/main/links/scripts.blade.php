@@ -47,4 +47,11 @@
       icon: "success",
     }); 
   @endif
+
+  @if(session('newsletter-failure') !== null)
+    swal({
+      text: "Failed to subscribe, Invalid Email!",
+      icon: "warning",
+    }); 
+  @endif
 </script>

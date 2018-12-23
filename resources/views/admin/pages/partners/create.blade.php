@@ -3,17 +3,20 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container form-container">
+        
+        @include('errors')
+        
         <form method="POST" action="{{route('admin.partners.store')}}" enctype="multipart/form-data">
             @csrf
     
             <div class="form-group">
                 <label for="post-title">Name</label>
-                <input type="text" class="form-control" id="post-title" name="name">
+                <input type="text" class="form-control" id="post-title" name="name" value="{{old('name')}}">
             </div>
 
             <div class="form-group">
-                <label>URL</label>
-                <textarea class="form-control" rows="2" name="url"></textarea>
+                <label for="post-title">URL</label>
+                <input type="text" class="form-control" id="post-title" name="name" value="{{old('url')}}">
             </div>
 
             <div class="form-group">

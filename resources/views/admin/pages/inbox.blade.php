@@ -18,12 +18,14 @@
                     <td>{{$inbox_item->created_at}}</td>
                     <td>{{$inbox_item->subject}}</td>
                     <td>
-                        <a href="{{route('admin.inbox.show', ['id' => $inbox_item->id])}}" class="btn btn-primary">Show</a>
-                        <form method="POST" action="{{route('admin.inbox.destroy', ['id'=>$inbox_item->id])}}" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger pl-3">Delete</button>
-                        </form>
+                        <div class="text-center">
+                            <a href="{{route('admin.inbox.show', ['id' => $inbox_item->id])}}" class="btn btn-primary">Show</a>
+                            <form method="POST" action="{{route('admin.inbox.destroy', ['id'=>$inbox_item->id])}}" style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger pl-3">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

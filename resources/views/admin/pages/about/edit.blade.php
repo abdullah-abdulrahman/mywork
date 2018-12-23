@@ -7,18 +7,20 @@
             <a href="{{route('admin.about')}}" class="btn btn-lg btn-primary">Back</a>
         </div>
 
+        @include('errors')
+
         <form method="POST" action="{{route('admin.about.update', ['id'=> $id])}}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
     
             <div class="form-group">
                 <label for="post-title">Title</label>
-                <input type="text" class="form-control" id="post-title" name="title" value="{{$about[0]->title}}">
+                <input type="text" class="form-control" id="post-title" name="title" value="{{$about->title}}">
             </div>
     
             <div class="form-group">
                 <label>Description</label>
-                <textarea class="form-control" rows="6" id="article-ckeditor" name="description">{{$about[0]->description}}</textarea>
+                <textarea class="form-control" rows="6" id="article-ckeditor" name="description">{{$about->description}}</textarea>
             </div>
 
             <div class="form-group">

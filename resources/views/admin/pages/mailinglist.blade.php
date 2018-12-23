@@ -15,11 +15,13 @@
                         <td>{{$mailinglist_item->email}}</td>
                         <td>{{$mailinglist_item->created_at}}</td>
                         <td>
-                            <form method="POST" action="{{route('admin.mailinglist.destroy', ['id'=>$mailinglist_item->id])}}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger pl-3">Delete</button>
-                            </form>
+                            <div class="text-center">
+                                <form method="POST" action="{{route('admin.mailinglist.destroy', ['id'=>$mailinglist_item->id])}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger pl-3">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

@@ -30,6 +30,8 @@ class ContactController extends Controller
 
         $contact->save();
 
+        $request->session()->flash('edit-success', 'Sent successfully');
+
         return redirect(route('admin.contact'));
     }
 }

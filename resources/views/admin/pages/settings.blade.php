@@ -3,6 +3,9 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container form-container">
+
+        @include('errors')
+
         <form method="POST" action="{{route('admin.settings.update')}}">
             @csrf
             @method('PATCH')

@@ -36,6 +36,8 @@ class ServicesController extends Controller
         $service->image = '/storage/images/'. $image;
         $service->save();
 
+        $request->session()->flash('create-success', 'Sent successfully');
+
         return redirect(route('admin.services'));
 
     }
@@ -67,7 +69,9 @@ class ServicesController extends Controller
             $image = UploadClass::uploadImage($request, 'image', 'public/images');
             $service->image = '/storage/images/'. $image;
         }
-       
+
+        $request->session()->flash('edit-success', 'Sent successfully');
+    
         $service->save();
 
 

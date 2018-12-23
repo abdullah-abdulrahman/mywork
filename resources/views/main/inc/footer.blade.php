@@ -53,7 +53,7 @@
                 <p>{{ $setting[0]->newsletter }}</p>
                 <form action="{{route('subscribe')}}" method="post">
                     @csrf
-                    <input type="email" name="email"><input type="submit"  value="Subscribe">
+                    <input type="email" name="email" value="{{old('email')}}"><input type="submit"  value="Subscribe">
                 </form>
             </div>
 

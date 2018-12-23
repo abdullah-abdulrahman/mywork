@@ -9,12 +9,12 @@
     
             <div class="form-group">
                 <label for="post-title">Title</label>
-                <input type="text" class="form-control" id="post-title" name="title" value="{{$slider[0]->title}}">
+                <input type="text" class="form-control" id="post-title" name="title" value="{{$slider->title}}">
             </div>
     
             <div class="form-group">
                 <label>Description</label>
-                <textarea class="form-control" rows="6" name="description">{{$slider[0]->description}}</textarea>
+                <textarea class="form-control" rows="6" name="description">{{$slider->description}}</textarea>
             </div>
 
             <div class="form-group">

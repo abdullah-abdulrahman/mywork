@@ -8,12 +8,12 @@
     
             <div class="form-group">
                 <label for="post-title">Title</label>
-                <input type="text" class="form-control" id="post-title" name="title">
+                <input type="text" class="form-control" id="post-title" name="title" value="{{old('title')}}">
             </div>
     
             <div class="form-group">
                 <label>Description</label>
-                <textarea class="form-control" rows="6" name="description"></textarea>
+                <textarea class="form-control" rows="6" name="description">{{old('description')}}</textarea>
             </div>
 
             <div class="form-group">

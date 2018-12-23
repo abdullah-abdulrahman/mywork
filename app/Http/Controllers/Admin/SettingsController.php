@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Http\Controllers\Controller;
 use App\Setting;
 
@@ -14,7 +15,8 @@ class SettingsController extends Controller
     }
 
     public function update(Request $request){
-        $request->validate([
+        $data = $request->all();
+        $validator = Validator::make($data, [
             'site_name' => 'required|string',
             'description' => 'required|string',
             'email' => 'required|email',
@@ -25,17 +27,14 @@ class SettingsController extends Controller
             'newsletter' => 'required|string|max:200'
         ]);
 
-        $setting = Setting::find(1);
-        $setting->site_name = request('site_name');
-        $setting->description = request('description');
-        $setting->email = request('email');
-        $setting->keywords = request('keywords');
-        $setting->facebook = request('facebook');
-        $setting->linkedin = request('linkedin');
-        $setting->instagram = request('instagram');
-        $setting->newsletter = request('newsletter');
-        $setting->save();
+        if ($validator->fails()) {
+            $request->session()->flash('edit-failure', 'Failed to send');
+            return redirect(route('admin.settings'))->withErrors($validator)->withInput();
+        } else {
+            Setting::updateOrCreate(['id'=> 1], $data);
 
-        return redirect(route('admin.settings'));
+            $request->session()->flash('edit-success', 'Sent successfully');
+            return redirect(route('admin.settings'));
+        }
     }
 }

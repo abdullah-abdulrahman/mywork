@@ -6,6 +6,8 @@
         <div class="text-center">
             <a href="{{route('admin.projects')}}" class="btn btn-lg btn-primary">Back</a>
         </div>
+
+        @include('errors')
         
         <form method="POST" action="{{route('admin.projects.update', ['id'=> $id])}}" enctype="multipart/form-data">
             @csrf
@@ -13,17 +15,17 @@
     
             <div class="form-group">
                 <label for="post-title">Title</label>
-                <input type="text" class="form-control" id="post-title" name="title" value="{{$project[0]->title}}">
+                <input type="text" class="form-control" id="post-title" name="title" value="{{$project->title}}">
             </div>
 
             <div class="form-group">
                 <label>Description</label>
-                <textarea class="form-control" rows="6" id="article-ckeditor" name="description">{{$project[0]->description}}</textarea>
+                <textarea class="form-control" rows="6" id="article-ckeditor" name="description">{{$project->description}}</textarea>
             </div>
 
             <div class="form-group">
                 <label>Service type :</label>
-                <select name = "service-id">
+                <select name = "service-id" class="form-control">
                     @foreach ($services as $service)
                         <option value = "{{$service->id}}">{{$service->name}}</option>       
                     @endforeach

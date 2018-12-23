@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Http\Controllers\Controller;
 use App\Partner;
 
@@ -20,26 +21,32 @@ class PartnersController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
+        
+        $data = $request->all();
+        $validator = Validator::make($data, [
             'name' => 'required|string',
             'image' => 'required|image',
             'url' => 'nullable|url'
         ]);
 
-        $image = UploadClass::uploadImage($request, 'image', 'public/images');
+        if ($validator->fails()) {
+            $request->session()->flash('edit-failure', 'Failed to send');
+            return redirect(route('admin.partners.create'))->withErrors($validator)->withInput();
+        } else {
+            $image = UploadClass::uploadImage($request, 'image', 'public/images');
 
-        $partner = new Partner;
-        $partner->name = request('name');
-        $partner->image = '/storage/images/'. $image;
+            $partner = new Partner;
+            $partner->name = request('name');
+            $partner->image = '/storage/images/'. $image;
 
-        if ($request->has('url')) {
-            $partner->url = request('url');
+            if ($request->has('url')) {
+                $partner->url = request('url');
+            }
+
+            $partner->save();
+            $request->session()->flash('create-success', 'Sent successfully');
+            return redirect(route('admin.partners'));
         }
-
-        $partner->save();
-
-        return redirect(route('admin.partners'));
-
     }
 
     public function show(){
@@ -69,20 +76,18 @@ class PartnersController extends Controller
             $image = UploadClass::uploadImage($request, 'image', 'public/images');
             $partner->image = '/storage/images/'. $image;
         }
-       
         $partner->save();
 
+        $request->session()->flash('edit-success', 'Sent successfully');
         return redirect(route('admin.partners'));
     }
 
     public function destroy($id){
         $all_items = Partner::all();
-
         if(count($all_items) > 1){
             $partner = Partner::find($id);
             $partner->delete();
         }
-        
         return redirect(route('admin.partners'));
     }
 }

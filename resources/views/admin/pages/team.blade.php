@@ -6,6 +6,9 @@
         <div class="text-center bottom-btn">
             <a href="{{route('homepage')}}/#team" target="_blank" class="btn btn-lg btn-primary">Show on website</a>
         </div>
+
+        @include('errors')
+
         <form method="POST" action="{{route('admin.team.update')}}">
             @csrf
             @method('PATCH')

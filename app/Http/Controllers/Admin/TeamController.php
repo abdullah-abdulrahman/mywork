@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Http\Controllers\Controller;
 use App\Team;
 
@@ -14,16 +15,19 @@ class TeamController extends Controller
     }
 
     public function update(Request $request){
-        $request->validate([
+        $data = $request->all();
+        $validator = Validator::make($data, [
             'title' => 'required|string',
-            'description' => 'required|string'
+            'description' => 'required|string',
         ]);
 
-        $team = Team::find(1);
-        $team->title = request('title');
-        $team->description = request('description');
-        $team->save();
-
-        return redirect(route('admin.team'));
+        if ($validator->fails()) {
+            $request->session()->flash('edit-failure', 'Failed to send');
+            return redirect(route('admin.team'))->withErrors($validator)->withInput();
+        } else {
+            Team::updateOrCreate(['id'=> 1], $data);
+            $request->session()->flash('edit-success', 'Sent successfully');         
+            return redirect(route('admin.team'));
+        }
     }
 }

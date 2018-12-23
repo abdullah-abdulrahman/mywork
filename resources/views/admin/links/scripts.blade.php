@@ -59,3 +59,36 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('/')}}/admin_assets/dist/js/demo.js"></script>
+
+<!-- Sweet Alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+  @if(session('create-success') !== null)
+    swal({
+      text: "Created successfully",
+      icon: "success",
+    }); 
+  @endif
+
+  @if(session('create-failure') !== null)
+    swal({
+      text: "Failed to create!",
+      icon: "warning",
+    }); 
+  @endif
+
+  @if(session('edit-success') !== null)
+    swal({
+      text: "Edited successfully!",
+      icon: "success",
+    }); 
+  @endif
+
+  @if(session('edit-failure') !== null)
+    swal({
+      text: "Failed to edit!",
+      icon: "warning",
+    }); 
+  @endif
+</script>
