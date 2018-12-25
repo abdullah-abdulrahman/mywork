@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label>Brief Description</label>
-                <textarea class="form-control" rows="1" name="brief-description">{{$service[0]->brief_description}}</textarea>
+                <textarea class="form-control" rows="1" name="brief_description">{{$service[0]->brief_description}}</textarea>
             </div>
     
             <div class="form-group">

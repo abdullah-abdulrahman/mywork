@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\Project;
@@ -10,7 +11,6 @@ use App\Service;
 use App\Image;
 
 use App\Helpers\Classes\UploadClass;
-use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -29,7 +29,7 @@ class ProjectsController extends Controller
         $validator = Validator::make($data, [
             'title' => 'required|string',
             'description' => 'required|string',
-            'service-id' => 'required|numeric',
+            'service_id' => 'required|numeric',
             'image' => 'required|image'
         ]);
 
@@ -37,20 +37,15 @@ class ProjectsController extends Controller
             $request->session()->flash('create-failure', 'Failed to send');
             return redirect(route('admin.projects.create'))->withErrors($validator)->withInput();
         } else {
-            $uploaded_image = UploadClass::uploadImage($request, 'image', 'public/images');
+            $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
 
-            $project = new Project;
-            $project->title = request('title');
-            $project->description = request('description');
-            $project->service_id = request('service-id');
-            $project->save();
+            Project::create($data);
 
             $current_project = Project::select('id')->orderBy('id', 'DESC')->first();
+            $data['project_id'] = $current_project['id'];
+            $data['image'] = $image;
 
-            $image = new Image;
-            $image->project_id = $current_project->id;
-            $image->image = '/storage/images/'. $uploaded_image;
-            $image->save();
+            Image::create($data);
 
             $request->session()->flash('create-success', 'Sent successfully');
             return redirect(route('admin.projects'));
@@ -75,7 +70,7 @@ class ProjectsController extends Controller
         $validator = Validator::make($data, [
             'title' => 'required|string',
             'description' => 'required|string',
-            'service-id' => 'required|numeric',
+            'service_id' => 'required|numeric',
             'image' => 'image'
         ]);
 
@@ -83,36 +78,26 @@ class ProjectsController extends Controller
             $request->session()->flash('edit-failure', 'Failed to send');
             return redirect(route('admin.projects.edit', ['id'=> $id]))->withErrors($validator)->withInput();
         } else {
-            $project = Project::find($id);
-            $project->title = request('title');
-            $project->description = request('description');
-            $project->service_id = request('service-id');
-            $project->save();
-            
-            if($request->hasFile('image')){
-                $image = Image::select('image')->where('project_id', $id)->first();
-                $image_path = $image->image;
-                Storage::delete($image_path);
+            Project::updateOrCreate(['id'=>$id], $data);
 
-                $uploaded_image = UploadClass::uploadImage($request, 'image', 'public/images');
-                $image[0]->image = '/storage/images/'. $uploaded_image;
-                $image[0]->save();
+            if($request->hasFile('image')){
+                $old_image = Image::select('image')->where('project_id', $id)->first();
+                Storage::delete(UPLOADS_PATH .$old_image['image']);
+                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $data['image'] = $image;
+                Image::updateOrCreate(['id'=>$id], $data);    
             }
 
             $request->session()->flash('edit-success', 'Sent successfully');
-
             return redirect(route('admin.projects'));
         }
     }
 
     
-    public function destroy($id){
-        $all_items = Project::all();
-
-        if(count($all_items) > 1){
-            $project = Project::find($id);
-            $project->delete();
-        }
+    public function destroy($id, Request $request){
+        $image = Image::select('image')->where('project_id', $id)->first();
+        Storage::delete(UPLOADS_PATH .$image['image']);
+        Project::destroy($id);
         
         return redirect(route('admin.projects'));
     }

@@ -15,17 +15,17 @@
 
         <div class="carousel-inner" role="listbox">
 
-        @foreach ($slider as $key => $slider_item)
+        @foreach ($sliders as $key => $slider)
             @if ($key == 0)
-            <div class="carousel-item active" style='background-image: url("{{url('/')}}{{ $slider_item->image }}");'>              
+            <div class="carousel-item active" style='background-image: url("{{url('/').IMAGES_PATH}}{{ $slider->image }}");'>              
             @else
-            <div class="carousel-item" style='background-image: url("{{url('/')}}{{ $slider_item->image }}");'>             
+            <div class="carousel-item" style='background-image: url("{{url('/').IMAGES_PATH}}{{ $slider->image }}");'>             
             @endif
             <div class="carousel-container">
                 <div class="carousel-content">
-                    <h2>{{ $slider_item->title }}</h2>
+                    <h2>{{ $slider->title }}</h2>
                     <p>
-                    {{ $slider_item->description }}
+                    {{ $slider->description }}
                     </p>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="{{ 0.1*$key }}s">
                 <div class="about-col">
                     <div class="img">
-                    <img src="{{url('/')}}{{ $about_item->image }}" alt="" class="img-fluid">
+                    <img src="{{url('/').IMAGES_PATH}}{{ $about_item->image }}" alt="" class="img-fluid">
                         <div class="icon"><i class="ion-ios-list-outline"></i></div>
                     </div>
                     <h2 class="title">{{ $about_item->title }}</h2>
@@ -149,8 +149,8 @@
                     <div class="col-lg-4 col-md-6 portfolio-item filter-{{$this_image->project->service->id}} wow fadeInUp">
                             <div class="portfolio-wrap">
                             <figure>
-                                <img src="{{url('/')}}{{$this_image->image}}" class="img-fluid" alt="">
-                                <a href="{{url('/')}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                <img src="{{url('/').IMAGES_PATH}}{{$this_image->image}}" class="img-fluid" alt="">
+                                <a href="{{url('/').IMAGES_PATH}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
                                 <a href="{{route('project', ['id'=> $this_image->project_id])}}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
                             </figure>
             
@@ -178,7 +178,7 @@
                     @if($partner_item->url !== null)
                         <a href="{{$partner_item->url}}" target="_blank">
                     @endif
-                        <img src="{{url('/')}}{{ $partner_item->image }}" alt="">
+                        <img src="{{url('/').IMAGES_PATH}}{{ $partner_item->image }}" alt="">
                     @if($partner_item->url !== null)
                         </a>
                     @endif   
@@ -264,20 +264,6 @@
     if(hash == "#team" || hash == "#portfolio" || hash == "#partners" || hash == "#contact" || hash == "#about"){
         document.querySelector('#header').className += "header-scrolled";
     }
-
-    var aboutCols = document.getElementsByClassName('about-col');
-    var maximumHeight = 0;
-    for(var i=0; i<aboutCols.length; i++){
-        var height = aboutCols[i].clientHeight;
-        if(height > maximumHeight){
-            maximumHeight = height;
-        }
-    }
-
-    for(var i=0; i<aboutCols.length; i++){
-        aboutCols[i].clientHeight = maximumHeight;
-    }
-
 </script>
 
 @endsection

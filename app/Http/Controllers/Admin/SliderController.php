@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\Slider;
@@ -12,7 +13,7 @@ use App\Helpers\Classes\UploadClass;
 class SliderController extends Controller
 {
     public function index(){
-        $data['slider'] = Slider::select('id', 'title', 'description', 'image')->orderBy('id', 'DESC')->get();
+        $data['sliders'] = Slider::select('id', 'title', 'description', 'image')->orderBy('id', 'DESC')->get();
         return view('admin.pages.slider.index')->with($data);
     }
 
@@ -33,16 +34,11 @@ class SliderController extends Controller
             return redirect(route('admin.slider.create'))->withErrors($validator)->withInput();
         } else {
 
-            $image = UploadClass::uploadImage($request, 'image', 'public/images');
-
-            $slider = new Slider;
-            $slider->title = request('title');
-            $slider->description = request('description');
-            $slider->image = '/storage/images/'. $image;
-            $slider->save();
+            $image = UploadClass::uploadImage($request, 'image', 'public/'.UPLOADS_PATH);
+            $data['image'] = $image;
+            Slider::create($data);
 
             $request->session()->flash('create-success', 'Sent successfully');
-
             return redirect(route('admin.slider'));
         }
 
@@ -73,16 +69,16 @@ class SliderController extends Controller
             $request->session()->flash('edit-failure', 'Failed to send');
             return redirect(route('admin.slider.edit', ['id'=> $id]))->withErrors($validator)->withInput();
         } else {
-            $slider = Slider::find($id);
-            $slider->title = request('title');
-            $slider->description = request('description');
 
             if($request->hasFile('image')){
-                $image = UploadClass::uploadImage($request, 'image', 'public/images');
-                $slider->image = '/storage/images/'. $image;
+                $old_image = Slider::select('image')->where('id', $id)->first();
+                Storage::delete(UPLOADS_PATH .$old_image['image']);
+
+                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $data['image'] = $image;
             }
         
-            $slider->save();
+            Slider::updateOrCreate(['id'=>$id], $data);
 
             $request->session()->flash('edit-success', 'Sent successfully');
             return redirect(route('admin.slider'));
@@ -94,8 +90,9 @@ class SliderController extends Controller
         $all_items = Slider::all();
 
         if(count($all_items) > 1){
-            $slider = Slider::find($id);
-            $slider->delete();
+            $image = Slider::select('image')->where('id', $id)->first();
+            Storage::delete(UPLOADS_PATH .$image['image']);
+            Slider::destroy($id);
         }
         
         return redirect(route('admin.slider'));

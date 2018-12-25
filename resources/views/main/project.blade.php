@@ -10,7 +10,7 @@
     <header class="section-header">
         <h3>{{ $project->title }}</h3>
     </header>
-    <img src="{{url('/')}}{{$project_image[0]->image}}" class="service-image wow fadeInUp"> <br>
+    <img src="{{url('/').IMAGES_PATH}}{{$project_image[0]->image}}" class="service-image wow fadeInUp"> <br>
     <p class="mt-3">{!! $project->description !!}</p>
     <p class="mt-3 text-center text-muted">
         <small>

@@ -1,6 +1,8 @@
-#about .about-col {
-    height: 630px ;
-    overflow: hidden;
+@media (min-width: 1024px){
+    #about .about-col {
+        height: 630px ;
+        overflow: hidden;
+    }
 }
 
 #about .about-col p {
@@ -165,4 +167,16 @@
 
 #footer {
     margin-top: 50px;
+}
+
+@media (max-width: 1060px) {
+    #mobile-nav-toggle {
+      display: inline;
+    }
+}
+
+@media (max-width: 1060px) {
+    #nav-menu-container {
+      display: none;
+    }
 }

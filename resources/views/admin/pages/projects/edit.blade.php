@@ -25,9 +25,13 @@
 
             <div class="form-group">
                 <label>Service type :</label>
-                <select name = "service-id" class="form-control">
+                <select name="service_id" class="form-control">
                     @foreach ($services as $service)
-                        <option value = "{{$service->id}}">{{$service->name}}</option>       
+                        @if($service->id == $project->service_id)
+                            <option value="{{$service->id}}" selected>{{$service->name}}</option> 
+                        @else
+                            <option value="{{$service->id}}">{{$service->name}}</option>    
+                        @endif   
                     @endforeach
                 </select>
             </div>

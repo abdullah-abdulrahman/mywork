@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\Partner;
@@ -30,20 +31,17 @@ class PartnersController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $request->session()->flash('edit-failure', 'Failed to send');
+            $request->session()->flash('create-failure', 'Failed to send');
             return redirect(route('admin.partners.create'))->withErrors($validator)->withInput();
         } else {
-            $image = UploadClass::uploadImage($request, 'image', 'public/images');
-
-            $partner = new Partner;
-            $partner->name = request('name');
-            $partner->image = '/storage/images/'. $image;
-
+            $image = UploadClass::uploadImage($request, 'image', 'public/'.UPLOADS_PATH);
+            $data['image'] = $image;
             if ($request->has('url')) {
-                $partner->url = request('url');
+                $data['url'] = request('url');
             }
 
-            $partner->save();
+            Partner::create($data);
+
             $request->session()->flash('create-success', 'Sent successfully');
             return redirect(route('admin.partners'));
         }
@@ -60,34 +58,43 @@ class PartnersController extends Controller
     }
 
     public function update($id, Request $request){
-        $request->validate([
+        $data = $request->all();
+        $validator = Validator::make($data, [
             'name' => 'required|string',
-            'image' => 'image',
+            'image' => 'required|image',
             'url' => 'nullable|url'
         ]);
 
-        $partner = Partner::find($id);
-        $partner->name = request('name');
+        if ($validator->fails()) {
+            $request->session()->flash('edit-failure', 'Failed to send');
+            return redirect(route('admin.partners.edit'))->withErrors($validator)->withInput();
+        } else {
+            if($request->hasFile('image')){
+                $old_image = Partner::select('image')->where('id', $id)->first();
+                Storage::delete(UPLOADS_PATH .$old_image['image']);
+                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $data['image'] = $image;    
+            }
+            if ($request->has('url')) {
+                $data['url'] = request('url');
+            }
 
-        if ($request->has('url')) {
-            $partner->url = request('url');
-        }
-        if($request->hasFile('image')){
-            $image = UploadClass::uploadImage($request, 'image', 'public/images');
-            $partner->image = '/storage/images/'. $image;
-        }
-        $partner->save();
+            Partner::updateOrCreate(['id'=>$id], $data);
 
-        $request->session()->flash('edit-success', 'Sent successfully');
-        return redirect(route('admin.partners'));
+            $request->session()->flash('edit-success', 'Sent successfully');
+            return redirect(route('admin.partners'));
+        }
     }
 
     public function destroy($id){
         $all_items = Partner::all();
+
         if(count($all_items) > 1){
-            $partner = Partner::find($id);
-            $partner->delete();
+            $image = Partner::select('image')->where('id', $id)->first();
+            Storage::delete(UPLOADS_PATH .$image['image']);
+            Partner::destroy($id);
         }
+        
         return redirect(route('admin.partners'));
     }
 }

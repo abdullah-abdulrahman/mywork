@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Service;
+use Validator;
 
 use App\Helpers\Classes\UploadClass;
 
@@ -20,26 +22,24 @@ class ServicesController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
+        $data = $request->all();
+        $validator = Validator::make($data, [
             'name' => 'required|string',
-            'brief-description' => 'required|string',
+            'brief_description' => 'required|string',
             'description' => 'required|string',
             'image' => 'required|image'
         ]);
 
-        $image = UploadClass::uploadImage($request, 'image', 'public/images');
+        if ($validator->fails()) {
+            $request->session()->flash('create-failure', 'Failed to send');
+            return redirect(route('admin.services.create'))->withErrors($validator)->withInput();
+        } else {
+            $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+            Service::create($data);
 
-        $service = new Service;
-        $service->name = request('name');
-        $service->description = request('description');
-        $service->brief_description = request('brief-description');
-        $service->image = '/storage/images/'. $image;
-        $service->save();
-
-        $request->session()->flash('create-success', 'Sent successfully');
-
-        return redirect(route('admin.services'));
-
+            $request->session()->flash('create-success', 'Sent successfully');
+            return redirect(route('admin.services'));
+        }
     }
 
     public function show(){
@@ -53,39 +53,38 @@ class ServicesController extends Controller
     }
 
     public function update($id, Request $request){
-        $request->validate([
+        $data = $request->all();
+        $validator = Validator::make($data, [
             'name' => 'required|string',
-            'brief-description' => 'required|string',
+            'brief_description' => 'required|string',
             'description' => 'required|string',
             'image' => 'image'
         ]);
 
-        $service = Service::find($id);
-        $service->name = request('name');
-        $service->description = request('description');
-        $service->brief_description = request('brief-description');
+        if ($validator->fails()) {
+            $request->session()->flash('edit-failure', 'Failed to send');
+            return redirect(route('admin.services.edit', ['id'=> $id]))->withErrors($validator)->withInput();
+        } else {
 
-        if($request->hasFile('image')){
-            $image = UploadClass::uploadImage($request, 'image', 'public/images');
-            $service->image = '/storage/images/'. $image;
+            if($request->hasFile('image')){
+                $old_image = Service::select('image')->where('id', $id)->first();
+                Storage::delete(UPLOADS_PATH .$old_image['image']);
+                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $data['image'] = $image;
+            }
+            Service::updateOrCreate(['id'=>$id], $data);
+
+            $request->session()->flash('edit-success', 'Sent successfully');
+            return redirect(route('admin.services'));
         }
-
-        $request->session()->flash('edit-success', 'Sent successfully');
-    
-        $service->save();
-
-
-        return redirect(route('admin.services'));
     }
 
     public function destroy($id){
-        $all_items = Service::all();
-
-        if(count($all_items) > 1){
-            $service = Service::find($id);
-            $service->delete();
-        }
+        $image = Service::select('image')->where('id', $id)->first();
+        Storage::delete(UPLOADS_PATH .$image['image']);
+        Service::destroy($id);
         
         return redirect(route('admin.services'));
+
     }
 }

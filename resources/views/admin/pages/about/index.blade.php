@@ -23,7 +23,7 @@
                             {!! Str::words($about->description, 10) !!}
                         </td>
                         <td>
-                            <img src="{{url('/')}}{{$about->image}}" width="100">  
+                            <img src="{{url('/').IMAGES_PATH}}{{$about->image}}" width="100">  
                         </td>
                         <td>
                             <div class="text-center">

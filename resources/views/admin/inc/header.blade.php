@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{route('admin.index')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">
             <img src="{{url('/')}}/admin_assets/dist/img/logo.png" width="40px">
@@ -24,7 +24,7 @@
             <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="{{url('/')}}/admin_assets/dist/img/admin.png" class="user-image" alt="User Image">
-                <span class="hidden-xs">Kareem Smarttech</span>
+                <span class="hidden-xs">{{auth()->guard('admin')->user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
                 <!-- User image -->
@@ -34,7 +34,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="text-center">
-                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="{{route('admin.logout')}}" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                 </li>
             </ul>

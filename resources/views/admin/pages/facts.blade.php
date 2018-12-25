@@ -16,26 +16,26 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <input type="number" class="form-control" id="post-title" name="num-one" value="{{$facts->num_one}}">
-                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact-one" value="{{$facts->fact_one}}">
+                        <input type="number" class="form-control" id="post-title" name="num_one" value="{{$facts->num_one}}">
+                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact_one" value="{{$facts->fact_one}}">
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <input type="number" class="form-control" id="post-title" name="num-two" value="{{$facts->num_two}}">
-                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact-two" value="{{$facts->fact_two}}">
+                        <input type="number" class="form-control" id="post-title" name="num_two" value="{{$facts->num_two}}">
+                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact_two" value="{{$facts->fact_two}}">
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <input type="number" class="form-control" id="post-title" name="num-three" value="{{$facts->num_three}}">
-                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact-three" value="{{$facts->fact_three}}">
+                        <input type="number" class="form-control" id="post-title" name="num_three" value="{{$facts->num_three}}">
+                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact_three" value="{{$facts->fact_three}}">
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <input type="number" class="form-control" id="post-title" name="num-four" value="{{$facts->num_four}}">
-                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact-four" value="{{$facts->fact_four}}">
+                        <input type="number" class="form-control" id="post-title" name="num_four" value="{{$facts->num_four}}">
+                        <input type="text" class="form-control" maxlength="20" id="post-title" name="fact_four" value="{{$facts->fact_four}}">
                     </div>
                 </div>
             </div>

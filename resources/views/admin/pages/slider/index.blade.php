@@ -8,30 +8,32 @@
             <a href="{{route('homepage')}}" target="_blank" class="btn btn-lg btn-primary">Show on website</a>
         </div>
             
-        @foreach ($slider as $slider_item)
+        @foreach ($sliders as $slider)
             <div class="well">
                 <div class="container well-container">
                     <div class="row">
                         <div class="col-lg-6">
                             <p>
                                 <b>title: </b>
-                                {{$slider_item->title}}
+                                {{$slider->title}}
                             </p>
                             <p>
                                 <b>description: </b>
-                                {{$slider_item->description}}
+                                {{$slider->description}}
                             </p>
                         </div>
                         <div class="col-lg-3">
-                            <img src="{{url('/')}}{{$slider_item->image}}" width="190">
+                            <img src="{{url('/').IMAGES_PATH}}{{$slider->image}}" width="190">
                         </div>
                         <div class="col-lg-3">
                                 <br>
-                                <a href="{{route('admin.slider.edit', ['id' => $slider_item->id])}}" class="btn btn-primary">Edit</a>
-                                <form method="POST" action="{{route('admin.slider.destroy', ['id'=>$slider_item->id])}}" style="display:inline">
+                                <a href="{{route('admin.slider.edit', ['id' => $slider->id])}}" class="btn btn-primary">Edit</a>
+                                <form method="POST" action="{{route('admin.slider.destroy', ['id'=>$slider->id])}}" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger pl-3">Delete</button>
+                                    <button type="submit" class="btn btn-danger pl-3" onclick="return confirm('This action cannot be undone, Are you sure you want to delete?')">
+                                        Delete
+                                    </button>
                                 </form>
                         </div>
                     </div>

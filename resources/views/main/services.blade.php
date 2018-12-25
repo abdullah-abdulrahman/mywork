@@ -14,7 +14,7 @@
                     <div class="col-md-4 wow fadeInUp mb-5" data-wow-delay="0.1s">
                     <div class="srevices-col">
                         <div class="img">
-                            <img src="{{url('/')}}{{$service->image}}" alt="" class="img-fluid">
+                            <img src="{{url('/').IMAGES_PATH}}{{$service->image}}" alt="" class="img-fluid">
                         </div>
                         <h2 class="title">{{ Str::words($service->name, 3) }}</h2>
                         <p class="text-center">

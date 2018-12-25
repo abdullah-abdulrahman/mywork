@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $fillable = [
-        'title',
-        'description'
+        'project_id',
+        'image'
     ];
     
     public function project()

@@ -24,7 +24,7 @@
 
             <div class="form-group">
                 <label>Service type :</label>
-                <select name = "service-id">
+                <select name = "service_id">
                     @foreach ($services as $service)
                         <option value = "{{$service->id}}">{{$service->name}}</option>       
                     @endforeach

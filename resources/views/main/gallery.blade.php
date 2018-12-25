@@ -18,8 +18,8 @@
                     <div id="gallery-item" class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="{{url('/')}}{{$this_image->image}}" class="img-fluid" alt="">
-                                <a href="{{url('/')}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview link-preview-centered" title="Preview"><i class="ion ion-eye"></i></a>
+                                <img src="{{url('/').IMAGES_PATH}}{{$this_image->image}}" class="img-fluid" alt="">
+                                <a href="{{url('/').IMAGES_PATH}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview link-preview-centered" title="Preview"><i class="ion ion-eye"></i></a>
                             </figure>
                         </div>
                     </div>

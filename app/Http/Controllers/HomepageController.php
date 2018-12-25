@@ -21,7 +21,7 @@ use App\MailingList;
 class HomepageController extends Controller
 {
     public function index(){
-        $data['slider'] = Slider::select('title', 'description', 'image')->get();
+        $data['sliders'] = Slider::select('title', 'description', 'image')->get();
         $data['about'] = About::select('title', 'description', 'image')->get();
         $data['team'] = Team::select('title', 'description')->get();
         $data['fact'] = Fact::all();
