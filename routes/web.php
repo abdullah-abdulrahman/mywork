@@ -22,12 +22,6 @@ Route::get('/services/{id}', 'ServicesController@show')->name('service');
 Route::get('/projects/{id}', 'ProjectsController@show')->name('project');
 
 
-
-Route::get('/login', function () {
-    return view('admin.login');
-})->name('login');
-
-
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
     Route::get('/login','AuthController@login')->name('admin.login');
