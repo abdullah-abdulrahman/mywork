@@ -10,18 +10,17 @@
     <header class="section-header">
         <h3>{{ $project->title }}</h3>
     </header>
-    <img src="{{url('/').IMAGES_PATH}}{{$project_image[0]->image}}" class="service-image wow fadeInUp"> <br>
+    <img src="{{get_projects_image($project_image[0]->image)}}" class="service-image wow fadeInUp"> <br>
     <p class="mt-3">{!! $project->description !!}</p>
     <p class="mt-3 text-center text-muted">
         <small>
         Project uploaded at: {{ $project->created_at }}
         </small>
     </p>
-    <hr>
 </div> 
 
 <div class="text-center mb-5">
-    <a href="{{route('allServices')}}/{{$project->service->id}}" class="btn btn-primary">Go to this service</a>
+    <a href="{{route('allServices')}}/{{$project->service->id}}" class="btn btn-lg btn-primary">Go to this service</a>
 </div>
 
 <script>

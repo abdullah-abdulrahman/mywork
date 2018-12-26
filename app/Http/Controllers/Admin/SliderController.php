@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\Slider;
+use File;
 
 use App\Helpers\Classes\UploadClass;
 
@@ -34,7 +34,7 @@ class SliderController extends Controller
             return redirect(route('admin.slider.create'))->withErrors($validator)->withInput();
         } else {
 
-            $image = UploadClass::uploadImage($request, 'image', 'public/'.UPLOADS_PATH);
+            $image = UploadClass::uploadImage($request, 'image', SLIDER_PATH);
             $data['image'] = $image;
             Slider::create($data);
 
@@ -72,9 +72,9 @@ class SliderController extends Controller
 
             if($request->hasFile('image')){
                 $old_image = Slider::select('image')->where('id', $id)->first();
-                Storage::delete(UPLOADS_PATH .$old_image['image']);
-
-                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $path = UPLOADS_PATH. SLIDER_PATH. $old_image['image'];
+                File::delete($path);
+                $image = UploadClass::uploadImage($request, 'image', SLIDER_PATH);
                 $data['image'] = $image;
             }
         
@@ -91,7 +91,8 @@ class SliderController extends Controller
 
         if(count($all_items) > 1){
             $image = Slider::select('image')->where('id', $id)->first();
-            Storage::delete(UPLOADS_PATH .$image['image']);
+            $path = UPLOADS_PATH. SLIDER_PATH. $image['image'];
+            File::delete($path);
             Slider::destroy($id);
         }
         

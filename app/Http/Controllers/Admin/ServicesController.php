@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Service;
 use Validator;
+use File;
 
 use App\Helpers\Classes\UploadClass;
 
@@ -34,7 +34,7 @@ class ServicesController extends Controller
             $request->session()->flash('create-failure', 'Failed to send');
             return redirect(route('admin.services.create'))->withErrors($validator)->withInput();
         } else {
-            $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+            $image = UploadClass::uploadImage($request, 'image', SERVICES_PATH);
             Service::create($data);
 
             $request->session()->flash('create-success', 'Sent successfully');
@@ -68,8 +68,9 @@ class ServicesController extends Controller
 
             if($request->hasFile('image')){
                 $old_image = Service::select('image')->where('id', $id)->first();
-                Storage::delete(UPLOADS_PATH .$old_image['image']);
-                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $path = UPLOADS_PATH. SERVICES_PATH. $old_image['image'];
+                File::delete($path);
+                $image = UploadClass::uploadImage($request, 'image', SERVICES_PATH);
                 $data['image'] = $image;
             }
             Service::updateOrCreate(['id'=>$id], $data);
@@ -81,7 +82,8 @@ class ServicesController extends Controller
 
     public function destroy($id){
         $image = Service::select('image')->where('id', $id)->first();
-        Storage::delete(UPLOADS_PATH .$image['image']);
+        $path = UPLOADS_PATH. SERVICES_PATH. $image['image'];
+        File::delete($path);
         Service::destroy($id);
         
         return redirect(route('admin.services'));

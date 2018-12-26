@@ -17,9 +17,9 @@
 
         @foreach ($sliders as $key => $slider)
             @if ($key == 0)
-            <div class="carousel-item active" style='background-image: url("{{url('/').IMAGES_PATH}}{{ $slider->image }}");'>              
+                <div class="carousel-item active" style='background-image: url("{{get_slider_image($slider->image)}}");'>              
             @else
-            <div class="carousel-item" style='background-image: url("{{url('/').IMAGES_PATH}}{{ $slider->image }}");'>             
+                <div class="carousel-item" style='background-image: url("{{get_slider_image($slider->image)}}");'>             
             @endif
             <div class="carousel-container">
                 <div class="carousel-content">
@@ -61,7 +61,7 @@
                 <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="{{ 0.1*$key }}s">
                 <div class="about-col">
                     <div class="img">
-                    <img src="{{url('/').IMAGES_PATH}}{{ $about_item->image }}" alt="" class="img-fluid">
+                    <img src="{{get_about_image($about_item->image)}}" alt="" class="img-fluid">
                         <div class="icon"><i class="ion-ios-list-outline"></i></div>
                     </div>
                     <h2 class="title">{{ $about_item->title }}</h2>
@@ -149,8 +149,8 @@
                     <div class="col-lg-4 col-md-6 portfolio-item filter-{{$this_image->project->service->id}} wow fadeInUp">
                             <div class="portfolio-wrap">
                             <figure>
-                                <img src="{{url('/').IMAGES_PATH}}{{$this_image->image}}" class="img-fluid" alt="">
-                                <a href="{{url('/').IMAGES_PATH}}{{$this_image->image}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                <img src="{{get_projects_image($this_image->image)}}" class="img-fluid" alt="">
+                                <a href="{{get_projects_image($this_image->image)}}" data-lightbox="portfolio" data-title="{{$this_image->project->title}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
                                 <a href="{{route('project', ['id'=> $this_image->project_id])}}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
                             </figure>
             
@@ -178,7 +178,7 @@
                     @if($partner_item->url !== null)
                         <a href="{{$partner_item->url}}" target="_blank">
                     @endif
-                        <img src="{{url('/').IMAGES_PATH}}{{ $partner_item->image }}" alt="">
+                        <img src="{{get_partners_image($partner_item->image)}}" alt="">
                     @if($partner_item->url !== null)
                         </a>
                     @endif   

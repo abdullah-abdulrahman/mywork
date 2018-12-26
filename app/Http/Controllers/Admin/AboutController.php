@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\About;
+use File;
 
 use App\Helpers\Classes\UploadClass;
 
@@ -37,9 +37,10 @@ class AboutController extends Controller
         } else {
             if($request->hasFile('image')){
                 $old_image = About::select('image')->where('id', $id)->first();
-                Storage::delete(UPLOADS_PATH .$old_image['image']);
+                $path = UPLOADS_PATH. ABOUT_PATH. $old_image['image'];
+                File::delete($path);
 
-                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $image = UploadClass::uploadImage($request, 'image', ABOUT_PATH);
                 $data['image'] = $image;
             }
             

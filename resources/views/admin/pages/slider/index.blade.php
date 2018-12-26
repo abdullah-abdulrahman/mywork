@@ -23,7 +23,7 @@
                             </p>
                         </div>
                         <div class="col-lg-3">
-                            <img src="{{url('/').IMAGES_PATH}}{{$slider->image}}" width="190">
+                            <img src="{{get_slider_image($slider->image)}}" width="190">
                         </div>
                         <div class="col-lg-3">
                                 <br>

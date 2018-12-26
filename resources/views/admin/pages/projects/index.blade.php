@@ -24,7 +24,7 @@
                                 {!! Str::words($project->description, 10) !!}
                             </td>
                             <td>
-                                <img src="{{url('/').IMAGES_PATH}}{{$project->images[0]->image}}" width="100">  
+                                <img src="{{get_projects_image($project->images[0]->image)}}" width="100">  
                             </td>
                             <td>
                                 <div class="text-center">

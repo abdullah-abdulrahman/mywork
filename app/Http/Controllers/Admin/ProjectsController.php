@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\Project;
 use App\Service;
 use App\Image;
+use File;
 
 use App\Helpers\Classes\UploadClass;
 
@@ -37,7 +37,7 @@ class ProjectsController extends Controller
             $request->session()->flash('create-failure', 'Failed to send');
             return redirect(route('admin.projects.create'))->withErrors($validator)->withInput();
         } else {
-            $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+            $image = UploadClass::uploadImage($request, 'image', PROJECTS_PATH);
 
             Project::create($data);
 
@@ -82,8 +82,9 @@ class ProjectsController extends Controller
 
             if($request->hasFile('image')){
                 $old_image = Image::select('image')->where('project_id', $id)->first();
-                Storage::delete(UPLOADS_PATH .$old_image['image']);
-                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $path = UPLOADS_PATH. PROJECTS_PATH. $old_image['image'];
+                File::delete($path);
+                $image = UploadClass::uploadImage($request, 'image', PROJECTS_PATH);
                 $data['image'] = $image;
                 Image::updateOrCreate(['id'=>$id], $data);    
             }
@@ -96,7 +97,8 @@ class ProjectsController extends Controller
     
     public function destroy($id, Request $request){
         $image = Image::select('image')->where('project_id', $id)->first();
-        Storage::delete(UPLOADS_PATH .$image['image']);
+        $path = UPLOADS_PATH. PROJECTS_PATH. $image['image'];
+        File::delete($path);
         Project::destroy($id);
         
         return redirect(route('admin.projects'));

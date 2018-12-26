@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Contact;
 use App\Setting;
 use App\Service;
+use App\Project;
 use App\Image;
 
 class ServicesController extends Controller
@@ -25,6 +26,7 @@ class ServicesController extends Controller
         $data['services'] = Service::select('id', 'name')->get();
         $data['service'] = Service::findOrFail($id);
         $data['image'] = Image::select('project_id', 'image')->orderBy('id', 'DESC')->get();
+        $data['count'] = count(Project::select('id')->where('service_id', $id)->get());
 
         return view('main.service')->with($data);
     }

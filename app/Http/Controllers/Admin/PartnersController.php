@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\Partner;
+use File;
 
 use App\Helpers\Classes\UploadClass;
 
@@ -34,7 +34,7 @@ class PartnersController extends Controller
             $request->session()->flash('create-failure', 'Failed to send');
             return redirect(route('admin.partners.create'))->withErrors($validator)->withInput();
         } else {
-            $image = UploadClass::uploadImage($request, 'image', 'public/'.UPLOADS_PATH);
+            $image = UploadClass::uploadImage($request, 'image', PARTNERS_PATH);
             $data['image'] = $image;
             if ($request->has('url')) {
                 $data['url'] = request('url');
@@ -71,8 +71,9 @@ class PartnersController extends Controller
         } else {
             if($request->hasFile('image')){
                 $old_image = Partner::select('image')->where('id', $id)->first();
-                Storage::delete(UPLOADS_PATH .$old_image['image']);
-                $image = UploadClass::uploadImage($request, 'image', UPLOADS_PATH);
+                $path = UPLOADS_PATH. PARTNERS_PATH. $old_image['image'];
+                File::delete($path);
+                $image = UploadClass::uploadImage($request, 'image', PARTNERS_PATH);
                 $data['image'] = $image;    
             }
             if ($request->has('url')) {
@@ -91,7 +92,8 @@ class PartnersController extends Controller
 
         if(count($all_items) > 1){
             $image = Partner::select('image')->where('id', $id)->first();
-            Storage::delete(UPLOADS_PATH .$image['image']);
+            $path = UPLOADS_PATH. PARTNERS_PATH. $image['image'];
+            File::delete($path);
             Partner::destroy($id);
         }
         

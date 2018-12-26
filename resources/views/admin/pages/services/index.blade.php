@@ -25,7 +25,7 @@
                                 {!! Str::words($service->brief_description, 10) !!}
                             </td>
                             <td>
-                                <img src="{{url('/').IMAGES_PATH}}{{$service->image}}" width="100">  
+                                <img src="{{get_services_image($service->image)}}" width="100">  
                             </td>
                             <td>
                                 <div class="text-center">

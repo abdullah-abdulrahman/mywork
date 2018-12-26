@@ -29,7 +29,7 @@
                                 @endif
                             </td>
                             <td>
-                                <img src="{{url('/').IMAGES_PATH}}{{$partner->image}}" width="100">  
+                                <img src="{{get_partners_image($partner->image)}}" width="100">  
                             </td>
                             <td>
                                 <div class="text-center">

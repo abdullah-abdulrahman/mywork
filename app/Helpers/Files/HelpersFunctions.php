@@ -8,17 +8,6 @@ if (!function_exists('site_image')) {
     }
 }
 
-
-if (!function_exists('get_image')) {
-    function get_image($path_image)
-    {
-        return url('/uploads/' . $path_image);
-    }
-}
-
-
-
-
 if (!function_exists('adminAth')) {
     function adminAth()
     {
@@ -26,10 +15,43 @@ if (!function_exists('adminAth')) {
     }
 }
 
+// Get Images Paths
+
+function get_slider_image($path_image)
+{
+    return url('/uploads/slider/' . $path_image);
+}
+
+function get_about_image($path_image)
+{
+    return url('/uploads/about/' . $path_image);
+}
+
+function get_partners_image($path_image)
+{
+    return url('/uploads/partners/' . $path_image);
+}
+
+function get_services_image($path_image)
+{
+    return url('/uploads/services/' . $path_image);
+}
+
+function get_projects_image($path_image)
+{
+    return url('/uploads/projects/' . $path_image);
+}
+
+
 //  pathes 
 
-define("UPLOADS_PATH", "public/images/");
-define("IMAGES_PATH", "/storage/images/");
+define("UPLOADS_PATH", "uploads/");
+define("SLIDER_PATH", "slider/");
+define("ABOUT_PATH", "about/");
+define("PARTNERS_PATH", "partners/");
+define("PROJECTS_PATH", "projects/");
+define("SERVICES_PATH", "services/");
+
 
 
 
